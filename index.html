@@ -32,6 +32,13 @@
             padding-left: 20px;
             border-bottom: 2px solid #8a2be2;
             box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.4);
+            overflow-x: auto; /* Allows menu to scroll horizontally if you add too many games */
+            white-space: nowrap;
+        }
+
+        /* Hide horizontal scrollbar for clean look */
+        .menu-bar::-webkit-scrollbar {
+            display: none;
         }
 
         /* Glowing logo text */
@@ -43,6 +50,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 0 10px #00ffff;
+            flex-shrink: 0;
         }
 
         /* Neon space arcade buttons */
@@ -60,6 +68,7 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             box-shadow: inset 0 0 5px rgba(138, 43, 226, 0.2);
+            flex-shrink: 0;
         }
 
         /* Hover effect that glows cyan */
@@ -91,9 +100,12 @@
         <div class="site-title">🚀 Orbit Arcade</div>
         <button class="game-btn" onclick="changeGame('https://veck.io')">Veck.io</button>
         <button class="game-btn" onclick="changeGame('https://googleusercontent.com')">Slope</button>
+        <button class="game-btn" onclick="changeGame('https://amhooman.github.io/website/games/retrobowl/')">Retro Bowl</button>
+        <button class="game-btn" onclick="changeGame('https://rocketgoal.io/')">RocketGoal</button>
+        <button class="game-btn" onclick="changeGame('https://www.kodub.com/apps/polytrack')">PolyTrack 0.6.0</button>
     </div>
 
-    <!-- The Game Frame (Veck.io is set as the default starting game here) -->
+    <!-- The Game Frame (Equipped with Automatic Mouse Lock) -->
     <div class="game-container">
         <iframe 
             id="gameFrame"
