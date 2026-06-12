@@ -22,7 +22,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Futuristic, glowing cosmic menu bar with horizontal scrolling */
+        /* Futuristic, glowing cosmic menu bar */
         .menu-bar {
             height: 60px;
             background: rgba(15, 15, 35, 0.85);
@@ -32,13 +32,6 @@
             padding-left: 20px;
             border-bottom: 2px solid #8a2be2;
             box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.4);
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        /* Hide menu bar scrollbar for clean style */
-        .menu-bar::-webkit-scrollbar {
-            display: none;
         }
 
         /* Glowing logo text */
@@ -51,10 +44,9 @@
             letter-spacing: 2px;
             text-shadow: 0 0 10px #00ffff;
             cursor: pointer;
-            flex-shrink: 0;
         }
 
-        /* Neon space arcade navigation buttons */
+        /* Neon space arcade navigation buttons and dropdown menu */
         .game-btn {
             background-color: rgba(255, 255, 255, 0.05);
             color: #fff;
@@ -68,7 +60,7 @@
             font-size: 0.8rem;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            flex-shrink: 0;
+            outline: none;
         }
 
         .game-btn:hover {
@@ -76,6 +68,13 @@
             color: #0b0b16;
             border-color: #00ffff;
             box-shadow: 0 0 15px #00ffff;
+        }
+
+        /* Style the inside option elements of the dropdown */
+        .game-dropdown option {
+            background-color: #0b0b16;
+            color: #fff;
+            font-weight: bold;
         }
 
         .main-container {
@@ -145,42 +144,27 @@
 </head>
 <body>
 
-    <!-- Cosmic Menu Bar (Scroll mouse wheel sideways to see all buttons if needed!) -->
-   <div class="menu-bar">
+    <!-- Cosmic Menu Bar with Options Selection Container -->
+    <div class="menu-bar">
         <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
         <button class="game-btn" onclick="goHome()">🏠 Home</button>
         
-        <!-- NEW DROPDOWN MENUBAR SELECTOR -->
-        <select class="game-btn" onchange="if(this.value) changeGame(this.value); this.selectedIndex=0;" style="background-color: #0b0b16; padding-right: 30px;">
-            <option value="" disabled selected hidden>🎮 Choose Game</option>
+        <!-- COMPACT DROPDOWN SELECTOR (Holds all 12 games in one spot!) -->
+        <select id="dropdownSelector" class="game-btn game-dropdown" onchange="if(this.value) changeGame(this.value);">
+            <option value="" disabled selected hidden>🎮 Choose Mission</option>
             <option value="https://veck.io">Veck.io</option>
             <option value="https://rocketgoal.io">RocketGoal</option>
             <option value="./polytrack.html">PolyTrack</option>
             <option value="./slope.html">Slope</option>
             <option value="./retrobowl.html">Retro Bowl</option>
-            <option value="./escape.html">Escape</option>
-            <option value="./geometry.html">Geometry</option>
-            <option value="./highway.html">Highway</option>
-            <option value="./paper.html">Paper</option>
-            <option value="./project.html">Project</option>
-            <option value="./ragdoll.html">Ragdoll</option>
-            <option value="./space.html">Space Game</option>
+            <option value="./escape.html">Escape Road</option>
+            <option value="./geometry.html">Geometry Dash</option>
+            <option value="./highway.html">Highway Rider</option>
+            <option value="./paper.html">Paper.IO</option>
+            <option value="./project.html">Stickman Project</option>
+            <option value="./ragdoll.html">Ragdoll Archers</option>
+            <option value="./space.html">Space Waves</option>
         </select>
-    </div>
-        <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
-        <button class="game-btn" onclick="goHome()">🏠 Home</button>
-        <button class="game-btn" onclick="changeGame('https://veck.io')">Veck.io</button>
-        <button class="game-btn" onclick="changeGame('https://rocketgoal.io')">RocketGoal</button>
-        <button class="game-btn" onclick="changeGame('./polytrack.html')">PolyTrack</button>
-        <button class="game-btn" onclick="changeGame('./slope.html')">Slope</button>
-        <button class="game-btn" onclick="changeGame('./retrobowl.html')">Retro Bowl</button>
-        <button class="game-btn" onclick="changeGame('./escape.html')">Escape Road</button>
-        <button class="game-btn" onclick="changeGame('./geometry.html')">Geometry Dash</button>
-        <button class="game-btn" onclick="changeGame('./highway.html')">Highway Rider</button>
-        <button class="game-btn" onclick="changeGame('./paper.html')">Paper.IO</button>
-        <button class="game-btn" onclick="changeGame('./project.html')">Stickman Project</button>
-        <button class="game-btn" onclick="changeGame('./ragdoll.html')">Ragdoll Archers</button>
-        <button class="game-btn" onclick="changeGame('./space.html')">Space Waves</button>
     </div>
 
     <!-- Main Content Panel Area -->
@@ -212,36 +196,36 @@
                 </div>
                 <div class="game-tile" onclick="changeGame('./escape.html')">
                     <div class="tile-icon">🏃</div>
-                    <div class="tile-title">Escape</div>
+                    <div class="tile-title">Escape Road</div>
                 </div>
                 <div class="game-tile" onclick="changeGame('./geometry.html')">
                     <div class="tile-icon">🔺</div>
-                    <div class="tile-title">Geometry</div>
+                    <div class="tile-title">Geometry Dash</div>
                 </div>
                 <div class="game-tile" onclick="changeGame('./highway.html')">
                     <div class="tile-icon">🛣️</div>
-                    <div class="tile-title">Highway</div>
+                    <div class="tile-title">Highway Rider</div>
                 </div>
                 <div class="game-tile" onclick="changeGame('./paper.html')">
                     <div class="tile-icon">📝</div>
-                    <div class="tile-title">Paper</div>
+                    <div class="tile-title">Paper.IO</div>
                 </div>
                 <div class="game-tile" onclick="changeGame('./project.html')">
                     <div class="tile-icon">🛠️</div>
-                    <div class="tile-title">Project</div>
+                    <div class="tile-title">Stickman Project</div>
                 </div>
                 <div class="game-tile" onclick="changeGame('./ragdoll.html')">
                     <div class="tile-icon">🧍</div>
-                    <div class="tile-title">Ragdoll</div>
+                    <div class="tile-title">Ragdoll Archers</div>
                 </div>
                 <div class="game-tile" onclick="changeGame('./space.html')">
                     <div class="tile-icon">🌌</div>
-                    <div class="tile-title">Space Game</div>
+                    <div class="tile-title">Space Waves</div>
                 </div>
             </div>
         </div>
 
-        <!-- GAME CANVAS VIEW (With Pointer-Lock Mouse Capture Setup) -->
+        <!-- GAME CANVAS VIEW (Equipped with Pointer-Lock Setup) -->
         <div id="gameScreen" class="game-view">
             <iframe 
                 id="gameFrame"
@@ -258,12 +242,18 @@
             document.getElementById('homeScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'block';
             document.getElementById('gameFrame').src = gameUrl;
+            
+            // Sync the dropdown state to match the loaded game
+            document.getElementById('dropdownSelector').value = gameUrl;
         }
 
         function goHome() {
             document.getElementById('gameScreen').style.display = 'none';
             document.getElementById('homeScreen').style.display = 'flex';
             document.getElementById('gameFrame').src = '';
+            
+            // Reset the dropdown back to the placeholder text
+            document.getElementById('dropdownSelector').selectedIndex = 0;
         }
     </script>
 
