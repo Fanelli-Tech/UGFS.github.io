@@ -146,7 +146,27 @@
 <body>
 
     <!-- Cosmic Menu Bar (Scroll mouse wheel sideways to see all buttons if needed!) -->
-    <div class="menu-bar">
+   <div class="menu-bar">
+        <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
+        <button class="game-btn" onclick="goHome()">🏠 Home</button>
+        
+        <!-- NEW DROPDOWN MENUBAR SELECTOR -->
+        <select class="game-btn" onchange="if(this.value) changeGame(this.value); this.selectedIndex=0;" style="background-color: #0b0b16; padding-right: 30px;">
+            <option value="" disabled selected hidden>🎮 Choose Game</option>
+            <option value="https://veck.io">Veck.io</option>
+            <option value="https://rocketgoal.io">RocketGoal</option>
+            <option value="./polytrack.html">PolyTrack</option>
+            <option value="./slope.html">Slope</option>
+            <option value="./retrobowl.html">Retro Bowl</option>
+            <option value="./escape.html">Escape</option>
+            <option value="./geometry.html">Geometry</option>
+            <option value="./highway.html">Highway</option>
+            <option value="./paper.html">Paper</option>
+            <option value="./project.html">Project</option>
+            <option value="./ragdoll.html">Ragdoll</option>
+            <option value="./space.html">Space Game</option>
+        </select>
+    </div>
         <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
         <button class="game-btn" onclick="goHome()">🏠 Home</button>
         <button class="game-btn" onclick="changeGame('https://veck.io')">Veck.io</button>
