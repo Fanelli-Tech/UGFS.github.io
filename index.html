@@ -144,12 +144,12 @@
 </head>
 <body>
 
-    <!-- Cosmic Menu Bar with Options Selection Container -->
+    <!-- Single Cosmic Menu Bar -->
     <div class="menu-bar">
         <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
         <button class="game-btn" onclick="goHome()">🏠 Home</button>
         
-        <!-- COMPACT DROPDOWN SELECTOR (Holds all 12 games in one spot!) -->
+        <!-- COMPACT DROPDOWN SELECTOR -->
         <select id="dropdownSelector" class="game-btn game-dropdown" onchange="if(this.value) changeGame(this.value);">
             <option value="" disabled selected hidden>🎮 Choose Mission</option>
             <option value="https://veck.io">Veck.io</option>
@@ -225,7 +225,7 @@
             </div>
         </div>
 
-        <!-- GAME CANVAS VIEW (Equipped with Pointer-Lock Setup) -->
+        <!-- GAME CANVAS VIEW (With Pointer-Lock Mouse Capture Setup) -->
         <div id="gameScreen" class="game-view">
             <iframe 
                 id="gameFrame"
@@ -242,8 +242,6 @@
             document.getElementById('homeScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'block';
             document.getElementById('gameFrame').src = gameUrl;
-            
-            // Sync the dropdown state to match the loaded game
             document.getElementById('dropdownSelector').value = gameUrl;
         }
 
@@ -251,8 +249,6 @@
             document.getElementById('gameScreen').style.display = 'none';
             document.getElementById('homeScreen').style.display = 'flex';
             document.getElementById('gameFrame').src = '';
-            
-            // Reset the dropdown back to the placeholder text
             document.getElementById('dropdownSelector').selectedIndex = 0;
         }
     </script>
