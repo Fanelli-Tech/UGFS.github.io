@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbit Arcade | Unblocked Games</title>
     <style>
-        /* Deep space background with animated layer stars */
+        /* Deep space background with layered stars */
         body, html {
             margin: 0;
             padding: 0;
@@ -22,7 +22,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Futuristic, glowing cosmic menu bar */
+        /* Futuristic, glowing cosmic menu bar with horizontal scrolling */
         .menu-bar {
             height: 60px;
             background: rgba(15, 15, 35, 0.85);
@@ -32,7 +32,13 @@
             padding-left: 20px;
             border-bottom: 2px solid #8a2be2;
             box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.4);
+            overflow-x: auto;
             white-space: nowrap;
+        }
+
+        /* Hide menu bar scrollbar for clean style */
+        .menu-bar::-webkit-scrollbar {
+            display: none;
         }
 
         /* Glowing logo text */
@@ -45,6 +51,7 @@
             letter-spacing: 2px;
             text-shadow: 0 0 10px #00ffff;
             cursor: pointer;
+            flex-shrink: 0;
         }
 
         /* Neon space arcade navigation buttons */
@@ -61,6 +68,7 @@
             font-size: 0.8rem;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .game-btn:hover {
@@ -83,7 +91,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             overflow-y: auto;
             box-sizing: border-box;
             padding: 40px;
@@ -95,23 +103,25 @@
             letter-spacing: 3px;
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
             margin-bottom: 30px;
+            margin-top: 0;
         }
 
         /* Grid box configuration for game cards */
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px;
+            padding-bottom: 40px;
         }
 
-        /* Interactive tactical layout map cards */
+        /* Interactive tactical card tiles */
         .game-tile {
             background: rgba(20, 20, 45, 0.6);
             border: 2px solid #8a2be2;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px 15px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -125,8 +135,8 @@
             background: rgba(20, 20, 45, 0.9);
         }
 
-        .tile-icon { font-size: 2.5rem; margin-bottom: 10px; }
-        .tile-title { color: #fff; font-weight: bold; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .tile-icon { font-size: 2.2rem; margin-bottom: 10px; }
+        .tile-title { color: #fff; font-weight: bold; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Game window display element */
         .game-view { width: 100%; height: 100%; display: none; }
@@ -135,22 +145,22 @@
 </head>
 <body>
 
-    <!-- Cosmic Menu Bar -->
+    <!-- Cosmic Menu Bar (Scroll mouse wheel sideways to see all buttons if needed!) -->
     <div class="menu-bar">
         <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
         <button class="game-btn" onclick="goHome()">🏠 Home</button>
         <button class="game-btn" onclick="changeGame('https://veck.io')">Veck.io</button>
-        <button class="game-btn" onclick="changeGame('./slope.html')">Slope</button>
-        <button class="game-btn" onclick="changeGame('./retrobowl.html')">Retro Bowl</button>
         <button class="game-btn" onclick="changeGame('https://rocketgoal.io')">RocketGoal</button>
         <button class="game-btn" onclick="changeGame('./polytrack.html')">PolyTrack</button>
-        <button class="game-btn" onclick="changeGame('./escape.html')">Escape Road</button>
-        <button class="game-btn" onclick="changeGame('./geometry.html')">Geometry Dash</button>
-        <button class="game-btn" onclick="changeGame('./highway.html')">Highway Rider</button>
-        <button class="game-btn" onclick="changeGame('./paper.html')">Paper.IO</button>
-        <button class="game-btn" onclick="changeGame('./project.html')">Stickman Project</button>
-        <button class="game-btn" onclick="changeGame('./ragdoll.html')">Ragdoll Archers</button>
-        <button class="game-btn" onclick="changeGame('./space.html')">Space Waves</button>
+        <button class="game-btn" onclick="changeGame('./slope.html')">Slope</button>
+        <button class="game-btn" onclick="changeGame('./retrobowl.html')">Retro Bowl</button>
+        <button class="game-btn" onclick="changeGame('./escape.html')">Escape</button>
+        <button class="game-btn" onclick="changeGame('./geometry.html')">Geometry</button>
+        <button class="game-btn" onclick="changeGame('./highway.html')">Highway</button>
+        <button class="game-btn" onclick="changeGame('./paper.html')">Paper</button>
+        <button class="game-btn" onclick="changeGame('./project.html')">Project</button>
+        <button class="game-btn" onclick="changeGame('./ragdoll.html')">Ragdoll</button>
+        <button class="game-btn" onclick="changeGame('./space.html')">Space Game</button>
     </div>
 
     <!-- Main Content Panel Area -->
@@ -164,14 +174,6 @@
                     <div class="tile-icon">🔫</div>
                     <div class="tile-title">Veck.io</div>
                 </div>
-                <div class="game-tile" onclick="changeGame('./slope.html')">
-                    <div class="tile-icon">🟢</div>
-                    <div class="tile-title">Slope</div>
-                </div>
-                <div class="game-tile" onclick="changeGame('./retrobowl.html')">
-                    <div class="tile-icon">🏈</div>
-                    <div class="tile-title">Retro Bowl</div>
-                </div>
                 <div class="game-tile" onclick="changeGame('https://rocketgoal.io')">
                     <div class="tile-icon">⚽</div>
                     <div class="tile-title">RocketGoal</div>
@@ -180,10 +182,46 @@
                     <div class="tile-icon">🏎️</div>
                     <div class="tile-title">PolyTrack</div>
                 </div>
+                <div class="game-tile" onclick="changeGame('./slope.html')">
+                    <div class="tile-icon">🟢</div>
+                    <div class="tile-title">Slope</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./retrobowl.html')">
+                    <div class="tile-icon">🏈</div>
+                    <div class="tile-title">Retro Bowl</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./escape.html')">
+                    <div class="tile-icon">🏃</div>
+                    <div class="tile-title">Escape</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./geometry.html')">
+                    <div class="tile-icon">🔺</div>
+                    <div class="tile-title">Geometry</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./highway.html')">
+                    <div class="tile-icon">🛣️</div>
+                    <div class="tile-title">Highway</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./paper.html')">
+                    <div class="tile-icon">📝</div>
+                    <div class="tile-title">Paper</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./project.html')">
+                    <div class="tile-icon">🛠️</div>
+                    <div class="tile-title">Project</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./ragdoll.html')">
+                    <div class="tile-icon">🧍</div>
+                    <div class="tile-title">Ragdoll</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('./space.html')">
+                    <div class="tile-icon">🌌</div>
+                    <div class="tile-title">Space Game</div>
+                </div>
             </div>
         </div>
 
-        <!-- INDIVIDUAL USER INTERFACE GAME CANVAS VIEW -->
+        <!-- GAME CANVAS VIEW (With Pointer-Lock Mouse Capture Setup) -->
         <div id="gameScreen" class="game-view">
             <iframe 
                 id="gameFrame"
@@ -195,7 +233,6 @@
 
     </div>
 
-    <!-- Script processes toggling states between menus and game elements -->
     <script>
         function changeGame(gameUrl) {
             document.getElementById('homeScreen').style.display = 'none';
