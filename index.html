@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbit Arcade | Unblocked Games</title>
     <style>
-        /* Hides scrollbars and creates a deep space background */
+        /* Deep space background with animated layer stars */
         body, html {
             margin: 0;
             padding: 0;
@@ -35,7 +35,7 @@
             white-space: nowrap;
         }
 
-        /* Glowing logo text - Clicking this returns you home */
+        /* Glowing logo text */
         .site-title {
             color: #00ffff;
             font-weight: bold;
@@ -47,7 +47,7 @@
             cursor: pointer;
         }
 
-        /* Neon space arcade buttons */
+        /* Neon space arcade navigation buttons */
         .game-btn {
             background-color: rgba(255, 255, 255, 0.05);
             color: #fff;
@@ -70,14 +70,13 @@
             box-shadow: 0 0 15px #00ffff;
         }
 
-        /* Container for the main screen and the game frame */
         .main-container {
             width: 100%;
             height: calc(100% - 62px);
             position: relative;
         }
 
-        /* Home Page Dashboard view */
+        /* Home Dashboard panel view */
         .home-view {
             width: 100%;
             height: 100%;
@@ -98,7 +97,7 @@
             margin-bottom: 30px;
         }
 
-        /* Grid layout for the game selection tiles */
+        /* Grid box configuration for game cards */
         .game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -107,7 +106,7 @@
             max-width: 900px;
         }
 
-        /* Large interactive game selection tiles */
+        /* Interactive tactical layout map cards */
         .game-tile {
             background: rgba(20, 20, 45, 0.6);
             border: 2px solid #8a2be2;
@@ -126,31 +125,12 @@
             background: rgba(20, 20, 45, 0.9);
         }
 
-        .tile-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
+        .tile-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .tile-title { color: #fff; font-weight: bold; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .tile-title {
-            color: #fff;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Game iframe container - hidden by default */
-        .game-view {
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        /* Game window display element */
+        .game-view { width: 100%; height: 100%; display: none; }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
@@ -160,16 +140,16 @@
         <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
         <button class="game-btn" onclick="goHome()">🏠 Home</button>
         <button class="game-btn" onclick="changeGame('https://veck.io')">Veck.io</button>
-        <button class="game-btn" onclick="changeGame('https://slopeonline.online/xlope-game')">Slope</button>
-        <button class="game-btn" onclick="changeGame('https://bowlgames.io/retro-bowl')">Retro Bowl</button>
+        <button class="game-btn" onclick="changeGame('./slope.html')">Slope</button>
+        <button class="game-btn" onclick="changeGame('./retrobowl.html')">Retro Bowl</button>
         <button class="game-btn" onclick="changeGame('https://rocketgoal.io')">RocketGoal</button>
-        <button class="game-btn" onclick="changeGame('https://sites.google.com/view/staticquasar931/gm3z/polytrack/polytrack-0-6-0')">PolyTrack 0.6.0</button>
+        <button class="game-btn" onclick="changeGame('./polytrack.html')">PolyTrack 0.6.0</button>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Content Panel Area -->
     <div class="main-container">
         
-        <!-- HOME PAGE SCREEN (Grid Dashboard) -->
+        <!-- HOME PAGE SELECTION GRIDS -->
         <div id="homeScreen" class="home-view">
             <h1 class="home-heading">Select a Mission</h1>
             <div class="game-grid">
@@ -177,11 +157,11 @@
                     <div class="tile-icon">🔫</div>
                     <div class="tile-title">Veck.io</div>
                 </div>
-                <div class="game-tile" onclick="changeGame('https://googleusercontent.com')">
+                <div class="game-tile" onclick="changeGame('./slope.html')">
                     <div class="tile-icon">🟢</div>
                     <div class="tile-title">Slope</div>
                 </div>
-                <div class="game-tile" onclick="changeGame('https://github.io')">
+                <div class="game-tile" onclick="changeGame('./retrobowl.html')">
                     <div class="tile-icon">🏈</div>
                     <div class="tile-title">Retro Bowl</div>
                 </div>
@@ -189,14 +169,14 @@
                     <div class="tile-icon">⚽</div>
                     <div class="tile-title">RocketGoal</div>
                 </div>
-                <div class="game-tile" onclick="changeGame('https://kodub.com')">
+                <div class="game-tile" onclick="changeGame('./polytrack.html')">
                     <div class="tile-icon">🏎️</div>
                     <div class="tile-title">PolyTrack</div>
                 </div>
             </div>
         </div>
 
-        <!-- GAME PLAYER SCREEN (Equipped with Automatic Mouse Lock) -->
+        <!-- INDIVIDUAL USER INTERFACE GAME CANVAS VIEW -->
         <div id="gameScreen" class="game-view">
             <iframe 
                 id="gameFrame"
@@ -208,17 +188,15 @@
 
     </div>
 
-    <!-- Script to toggle screens and load links -->
+    <!-- Script processes toggling states between menus and game elements -->
     <script>
         function changeGame(gameUrl) {
-            // Hide Home, Show Game Frame, and load the URL
             document.getElementById('homeScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'block';
             document.getElementById('gameFrame').src = gameUrl;
         }
 
         function goHome() {
-            // Hide Game Frame, Show Home, and wipe the iframe source to save computer memory
             document.getElementById('gameScreen').style.display = 'none';
             document.getElementById('homeScreen').style.display = 'flex';
             document.getElementById('gameFrame').src = '';
