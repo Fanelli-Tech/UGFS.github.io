@@ -32,16 +32,10 @@
             padding-left: 20px;
             border-bottom: 2px solid #8a2be2;
             box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.4);
-            overflow-x: auto; /* Allows menu to scroll horizontally if you add too many games */
             white-space: nowrap;
         }
 
-        /* Hide horizontal scrollbar for clean look */
-        .menu-bar::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Glowing logo text */
+        /* Glowing logo text - Clicking this returns you home */
         .site-title {
             color: #00ffff;
             font-weight: bold;
@@ -50,7 +44,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 0 10px #00ffff;
-            flex-shrink: 0;
+            cursor: pointer;
         }
 
         /* Neon space arcade buttons */
@@ -67,23 +61,89 @@
             font-size: 0.8rem;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            box-shadow: inset 0 0 5px rgba(138, 43, 226, 0.2);
-            flex-shrink: 0;
         }
 
-        /* Hover effect that glows cyan */
         .game-btn:hover {
             background-color: #00ffff;
             color: #0b0b16;
             border-color: #00ffff;
             box-shadow: 0 0 15px #00ffff;
-            transform: translateY(-2px);
         }
 
-        /* The container where the game loads */
-        .game-container {
+        /* Container for the main screen and the game frame */
+        .main-container {
             width: 100%;
             height: calc(100% - 62px);
+            position: relative;
+        }
+
+        /* Home Page Dashboard view */
+        .home-view {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            box-sizing: border-box;
+            padding: 40px;
+        }
+
+        .home-heading {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            margin-bottom: 30px;
+        }
+
+        /* Grid layout for the game selection tiles */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Large interactive game selection tiles */
+        .game-tile {
+            background: rgba(20, 20, 45, 0.6);
+            border: 2px solid #8a2be2;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+        }
+
+        .game-tile:hover {
+            transform: scale(1.05);
+            border-color: #00ffff;
+            box-shadow: 0 0 20px #00ffff;
+            background: rgba(20, 20, 45, 0.9);
+        }
+
+        .tile-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .tile-title {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Game iframe container - hidden by default */
+        .game-view {
+            width: 100%;
+            height: 100%;
+            display: none;
         }
 
         iframe {
@@ -97,28 +157,71 @@
 
     <!-- Cosmic Menu Bar -->
     <div class="menu-bar">
-        <div class="site-title">🚀 Orbit Arcade</div>
+        <div class="site-title" onclick="goHome()">🚀 Orbit Arcade</div>
+        <button class="game-btn" onclick="goHome()">🏠 Home</button>
         <button class="game-btn" onclick="changeGame('https://veck.io')">Veck.io</button>
-        <button class="game-btn" onclick="changeGame('https://googleusercontent.com')">Slope</button>
-        <button class="game-btn" onclick="changeGame('https://amhooman.github.io/website/games/retrobowl/')">Retro Bowl</button>
-        <button class="game-btn" onclick="changeGame('https://rocketgoal.io/')">RocketGoal</button>
-        <button class="game-btn" onclick="changeGame('https://www.kodub.com/apps/polytrack')">PolyTrack 0.6.0</button>
+        <button class="game-btn" onclick="changeGame('https://slopeio.org/')">Slope</button>
+        <button class="game-btn" onclick="changeGame('https://github.io')">Retro Bowl</button>
+        <button class="game-btn" onclick="changeGame('https://rocketgoal.io')">RocketGoal</button>
+        <button class="game-btn" onclick="changeGame('https://sites.google.com/view/newcargame/')">PolyTrack 0.6.0</button>
     </div>
 
-    <!-- The Game Frame (Equipped with Automatic Mouse Lock) -->
-    <div class="game-container">
-        <iframe 
-            id="gameFrame"
-            src="https://veck.io" 
-            allow="pointer-lock; fullscreen"
-            sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms">
-        </iframe>
+    <!-- Main Content Area -->
+    <div class="main-container">
+        
+        <!-- HOME PAGE SCREEN (Grid Dashboard) -->
+        <div id="homeScreen" class="home-view">
+            <h1 class="home-heading">Select a Mission</h1>
+            <div class="game-grid">
+                <div class="game-tile" onclick="changeGame('https://veck.io')">
+                    <div class="tile-icon">🔫</div>
+                    <div class="tile-title">Veck.io</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('https://googleusercontent.com')">
+                    <div class="tile-icon">🟢</div>
+                    <div class="tile-title">Slope</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('https://github.io')">
+                    <div class="tile-icon">🏈</div>
+                    <div class="tile-title">Retro Bowl</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('https://rocketgoal.io')">
+                    <div class="tile-icon">⚽</div>
+                    <div class="tile-title">RocketGoal</div>
+                </div>
+                <div class="game-tile" onclick="changeGame('https://kodub.com')">
+                    <div class="tile-icon">🏎️</div>
+                    <div class="tile-title">PolyTrack</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAME PLAYER SCREEN (Equipped with Automatic Mouse Lock) -->
+        <div id="gameScreen" class="game-view">
+            <iframe 
+                id="gameFrame"
+                src="" 
+                allow="pointer-lock; fullscreen"
+                sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms">
+            </iframe>
+        </div>
+
     </div>
 
-    <!-- Script to change games when a button is clicked -->
+    <!-- Script to toggle screens and load links -->
     <script>
         function changeGame(gameUrl) {
+            // Hide Home, Show Game Frame, and load the URL
+            document.getElementById('homeScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'block';
             document.getElementById('gameFrame').src = gameUrl;
+        }
+
+        function goHome() {
+            // Hide Game Frame, Show Home, and wipe the iframe source to save computer memory
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('homeScreen').style.display = 'flex';
+            document.getElementById('gameFrame').src = '';
         }
     </script>
 
